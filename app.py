@@ -247,17 +247,17 @@ def start_background_sweeper():
     t.start()
 
 
-# Start sweeper when app starts (works with Railway, Flask 3.x)
-@app.before_serving
-def startup():
-    print("App started!")
-    start_background_sweeper()
+# --- IMPORTANT FOR FLASK 3.x ---
+# Start background tasks immediately when the module is loaded
+start_background_sweeper()
+# --------------------------------
 
 
 if __name__ == "__main__":
     # Local run
-    start_background_sweeper()
     app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+
+
 
 
 
