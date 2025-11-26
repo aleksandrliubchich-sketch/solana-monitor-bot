@@ -249,13 +249,14 @@ def start_background_sweeper():
 
 # Start sweeper when app starts (works with Railway)
 @app.before_serving
-def on_start():
-    start_background_sweeper()
+def startup():
+    print("App started!")
 
 
 if __name__ == "__main__":
     # Local run
     start_background_sweeper()
     app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+
 
 
